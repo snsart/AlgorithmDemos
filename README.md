@@ -3,5 +3,7 @@
 
 ## 排序
 
-[堆排序](/heapSort/readme.md)<br>
-[堆排序](https://github.com/snsart/blog/blob/master/heapSort/readme.md)<br>
+[插入排序](/isertSort/readme.md)<br>
+[堆和堆排序](/heapSort/readme.md)<br>
+[归并排序](/mergeSort/readme.md)<br>
+[打乱一维数组](/shuffle/readme.md)<br>
