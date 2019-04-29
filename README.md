@@ -11,5 +11,6 @@
 [打乱一维数组](/shuffle/readme.md)<br>
 
 ## 图
+[线段](/line/readme.md)<br>
 [求两线段交点](/segmentsIntr/readme.md)<br>
 [射线](/rayline/readme.md)<br>
