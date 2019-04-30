@@ -1,0 +1,152 @@
+html{
+	font-size: 24px;
+	 animation: fadeIn 1s linear;
+    -moz-animation: fadeIn 1s linear;   	/* Firefox */
+    -webkit-animation: fadeIn 1s linear;	/* Safari 和 Chrome */
+    -o-animation: fadeIn 1s linear;	        /* Opera */
+}
+
+body{
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	display: none;
+}
+
+canvas{
+	position: absolute;
+	margin-top: 7rem;
+	z-index: 0;
+}
+
+/*--------------程序标题--------------*/
+.demon_Btn{
+	position: absolute;
+	display: inline-block;
+	height: 7rem;
+	z-index: 1;
+}
+
+.title-pre{
+	display: inline-block;
+	width: 4rem;
+	height: 7rem;
+	padding: 0;
+	background: url(../img/title1.png) no-repeat;
+	background-size: 100% 100%;
+}
+.title-end{
+	display: inline-block;
+	width: 4rem;
+	height: 7rem;
+	padding: 0;
+	margin-left: -0.5rem;
+	background: url(../img/title3.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.title-text{
+	display: inline-block;
+	height: 7rem;
+	margin-left: -0.5rem;
+	background: url(../img/title2.png) repeat-x;
+	background-size: auto 100%;
+}
+
+.head-txt{
+	position: relative;
+	display: inline-block;
+	top:3.1rem;
+	font-size: 1.7rem;
+	font-weight: bold;
+	color: #fff;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+
+/*--------------程序工具栏--------------*/
+
+.canvas-contrl{
+	position: absolute;
+	background-color: #77A944;
+	border-radius: 0.2rem;
+	margin: 10rem 2rem auto auto;
+	padding: 0;
+	width: 2rem;
+	height: 9.2rem;
+	left: auto;
+	right: 0rem;
+	z-index: 2;
+}
+
+
+.arrow{
+	background-image: url(../img/arrowup.svg);
+}
+.hand{
+	background-image: url(../img/handup.svg);
+}
+.enlarge{
+	background-image: url(../img/enlarge.svg);
+}
+.reduce{
+	background-image: url(../img/reduce.svg);
+}
+.initbtn{
+	background-image: url(../img/init.svg);
+}
+
+.btn{
+	width: 1.6rem;
+	height: 1.6rem;
+	background-size:100% 100%;
+	background-repeat: no-repeat;
+	margin: 0.2rem auto;
+}
+
+
+
+
+li{
+	list-style-type: none;
+}
+
+.fl{
+	float: left;
+}
+
+.fr{
+	float: right;
+}
+
+
+/*修改滚动条*/
+/*# sourceMappingURL=primary_math.css.map */
+
+::-webkit-scrollbar {
+	width: 0.2rem;
+	height: 0.2rem;
+}
+
+::-webkit-scrollbar-track-piece {
+	background-color: rgba(255, 255, 255, 0);
+}
+
+::-webkit-scrollbar-thumb {
+	background: #77A944;
+	min-height: 0.2rem;
+	min-width: 0.2rem;
+	border-radius: 0.1rem;
+	margin-left: 0.3rem;
+}
+
+::-webkit-scrollbar-thumb:vertical:hover {
+	background: #77A944
+}
+
+::-webkit-scrollbar-thumb:horizontal:hover {
+	background: #77A944
+}
+
+
