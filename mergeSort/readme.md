@@ -1,3 +1,4 @@
+## [<<目录](../README.md)
 ## demo2-mergeSort
 **代码如下**：
 ```javascript
