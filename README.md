@@ -7,12 +7,11 @@
 [堆和堆排序](/heapSort/readme.md)<br>
 [归并排序](/mergeSort/readme.md)<br>
 
-
 [打乱一维数组](/shuffle/readme.md)<br>
 
 ## 图
 [线段](/line/readme.md)<br>
+[虚线](/dottedLiner/readme.md)<br>
 [求两线段交点](/segmentsIntr/readme.md)<br>
-[线段转虚线](/segmentsIntr/readme.md)<br>
 [射线](/rayline/readme.md)<br>
 [凸包](/convexHull/readme.md)<br>
