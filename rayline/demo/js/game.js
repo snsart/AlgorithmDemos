@@ -151,8 +151,6 @@ function hitTest(rayLine,mirrors,lines){
 		}
 	}
 	
-	console.log(crosses);
-	
 	if(crosses.length==0){
 		lines.push({
 			startPoint:rayLine.startPoint,
@@ -174,6 +172,7 @@ function hitTest(rayLine,mirrors,lines){
 			startPoint:rayLine.startPoint,
 			endPoint:first.cross
 		});
+		//如果镜子不能反射，返回；
 		if(!first.mirror.reflect){
 			return;
 		}
