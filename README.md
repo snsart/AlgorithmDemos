@@ -16,6 +16,8 @@
 [求两线段交点](/segmentsIntr/readme.md)<br>
 [射线](/rayline/readme.md)<br>
 [凸包](/convexHull/readme.md)<br>
+[切割凸多边形](/cutConvexPolygon/readme.md)<br>
+
 
 ### 寻路
 
