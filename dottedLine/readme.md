@@ -12,8 +12,8 @@
 function DottedLine(start,end,segnum,space){ 
 	this.startPoint=start;
 	this.endPoint=end;
-	this.segmentsNum=segnum;
-	this.space=spaceLength;
+	this.segmentLength=segmentLength;
+	this.spaceLength=spaceLength;
 }
 
 ```
@@ -31,12 +31,11 @@ DottedLine.prototype.getRotation=function(){
 ```javascript
 DottedLine.prototype.getSegments=function(){
 	var segments=[];
-	var end=this.endPoint,start=this.startPoint,segmentsNum=this.segmentsNum,spaceLength=this.spaceLength;
+	var end=this.endPoint,start=this.startPoint,segmentLength=this.segmentLength,spaceLength=this.spaceLength;
 	var lineLength=Math.sqrt((end.x-start.x)*(end.x-start.x)+(end.y-start.y)*(end.y-start.y));
 	var dxg=end.x-start.x;
 	var dyg=end.y-start.y;
-	var segmentsLength=lineLength-spaceLength*(segmentsNum-1);
-	var segmentLength=segmentsLength/segmentsNum;
+	var segmentsNum=Math.ceil(lineLength/(spaceLength+segmentLength));
 	//每一段空间在x和y轴方向上的投影长度
 	var spacedx=dxg*spaceLength/lineLength;
 	var spacedy=dyg*spaceLength/lineLength;
