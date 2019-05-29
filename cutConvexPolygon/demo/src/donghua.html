@@ -5,6 +5,8 @@
 <title>donghua</title>
 
 <script src="http://code.createjs.com/easeljs-0.8.1.min.js"></script>
+<script src="http://code.createjs.com/tweenjs-0.6.1.min.js"></script>
+<script src="http://code.createjs.com/movieclip-0.8.1.min.js"></script>
 <script src="donghua.js"></script>
 
 <script>
@@ -19,12 +21,12 @@ function init() {
 	stage.update();
 
 	createjs.Ticker.setFPS(lib.properties.fps);
-	//createjs.Ticker.addEventListener("tick", stage);
+	createjs.Ticker.addEventListener("tick", stage);
 }
 </script>
 </head>
 
 <body onload="init();" style="background-color:#D4D4D4">
-	<canvas id="canvas" width="1024" height="768" style="background-color:#FFFFFF"></canvas>
+	<canvas id="canvas" width="1000" height="700" style="background-color:#FFFFFF"></canvas>
 </body>
 </html>

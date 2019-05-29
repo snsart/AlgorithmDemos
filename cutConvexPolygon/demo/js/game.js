@@ -6,14 +6,6 @@
 
 (function(){
 	
-var close=true;
-$(".demon_Btn").click(function(e){
-	if(close){
-		//updateHandler();
-	}
-	close=!close;
-})
-
 
 /*------------------------------类----------------------------*/
 
@@ -24,7 +16,7 @@ function Point(x,y){
 
 /*---------------------------------------------------------------*/
 
-var canvas, stage, root;
+var canvas, stage, root,isCut=false;
 
 init();
 
@@ -42,46 +34,59 @@ function init() {
 }
 
 function gameInit(){
+	console.log("init")
 	var isdown=false,polygons=[],shapes=[];
-	var polygon=[new Point(100,100),new Point(150,200),new Point(150,250),new Point(50,250),new Point(50,200)];
+	var polygon=[new Point(200,100),new Point(500,100),new Point(500,300),new Point(200,300)];
 	polygons.push(polygon);
-	render(shapes,polygons,"#666666");
+	render(shapes,polygons,"#ffffff");
 	
 	var line={
 		startPoint:new Point(0,0),
 		endPoint:new Point(0,0)
 	}
-	var shape=new createjs.Shape();
-	root.addChild(shape);
+	var lineShape=new createjs.Shape();
+	root.addChild(lineShape);
 	
 	stage.addEventListener("stagemousedown",function(e){
+		if(!isCut){
+			return;
+		}
 		line.startPoint.x=stage.mouseX;
 		line.startPoint.y=stage.mouseY;
-		root.addChild(shape);
+		root.addChild(lineShape);
 		isdown=true;
 	})
 	
 	stage.addEventListener("stagemousemove",function(e){
+		if(!isCut){
+			return;
+		}
 		if(isdown){
 			line.endPoint.x=stage.mouseX;
 			line.endPoint.y=stage.mouseY;
-			renderLine(shape,line);
+			renderLine(lineShape,line);
 		}
 	})
 	
 	stage.addEventListener("stagemouseup",function(e){
+		if(!isCut){
+			return;
+		}
 		isdown=false;
 		polygons=cupPolygons(line,polygons);
-		render(shapes,polygons,"#666666");
+		render(shapes,polygons,"#ffffff");
+		lineShape.graphics.clear();
+		root.removeChild(lineShape);
 	})
 	
-	root.breakBtn.addEventListener("click",function(e){
-		for(var i=0;i<shapes.length;i++){
-			shapes[i].x=Math.random()*300;
-			shapes[i].y=Math.random()*300;
+	root.cutBtn.addEventListener("click",function(e){
+		isCut=!isCut;
+		if(isCut){
+			root.cutBtn.gotoAndStop(1)
+		}else{
+			root.cutBtn.gotoAndStop(0)
 		}
-	})
-	
+	})	
 }
 
 function cupPolygons(line,polygons){
@@ -117,12 +122,22 @@ function cutPolygon(line,polygon){
 		if(i==crosses[0].index){
 			polygon1.push(polygoncopy[i]);
 			polygon1.push(crosses[0],crosses[1]);
-			polygon2.push(crosses[1],crosses[0]);
+			polygon2.push(new Point(crosses[1].x,crosses[1].y),new Point(crosses[0].x,crosses[0].y));
 		}else if(i<crosses[0].index||i>crosses[1].index){
 			polygon1.push(polygoncopy[i]);
 		}else{
 			polygon2.push(polygoncopy[i]);
 		}
+	}
+	/*切完后错位*/
+	for(var i=0;i<polygon1.length;i++){
+		polygon1[i].x-=5;
+		polygon1[i].y-=5
+	}
+	
+	for(var i=0;i<polygon2.length;i++){
+		polygon2[i].x+=5;
+		polygon2[i].y+=5
 	}
 	return [polygon1,polygon2];
 }
@@ -162,16 +177,31 @@ function render(shapes,polygons,fillColor){
 	clear(shapes);
 	for(var i=0;i<polygons.length;i++){
 		var shape=new createjs.Shape();
+		shape.addDragAction(null,stage);
+		
+		shape.polygon=polygons[i];
 		root.addChild(shape);
 		shapes.push(shape);
-		drawPolygon(shape,polygons[i],3,"#000000",fillColor);
+		drawPolygon(shape,polygons[i],1,"#aaaaaa",fillColor);
+		
+		shape.mousedownHandler=function(){
+			this.initX=this.x;
+			this.initY=this.y;
+		}
+		
+		shape.mouseupHandler=function(){
+			for(var i=0;i<this.polygon.length;i++){
+				this.polygon[i].x+=this.x-this.initX;
+				this.polygon[i].y+=this.y-this.initY;
+			}
+		}
 	}
 }
 
 function renderLine(shape,line){
 	var g=shape.graphics;
 	g.clear();
-	g.setStrokeStyle(3,"round","round");
+	g.setStrokeStyle(1,"round","round");
 	g.beginStroke("#000000");
 	g.moveTo(line.startPoint.x, line.startPoint.y);
 	g.lineTo(line.endPoint.x, line.endPoint.y);

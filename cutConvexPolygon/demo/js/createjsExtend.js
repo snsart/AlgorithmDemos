@@ -104,7 +104,7 @@ createjs.Container.prototype.call=function(callback){
  * 2017.11.27:添加dragable属性
  */
 
-createjs.Container.prototype.addDragAction=function(rect,stage,center=false,down=false){
+createjs.DisplayObject.prototype.addDragAction=createjs.Container.prototype.addDragAction=function(rect,stage,center=false,down=false){
 	if(this.dragable==null){
 		this.dragable=true;
 	}
@@ -138,13 +138,23 @@ createjs.Container.prototype.addDragAction=function(rect,stage,center=false,down
 				offsetX=stage.mouseX-dragMc.x;
 				offsetY=stage.mouseY-dragMc.y;
 			}
+			
+			if(dragMc.mousedownHandler instanceof(Function)){
+					dragMc.mousedownHandler();
+			}
+			
 		})
 	}
 
 	stage.addEventListener("stagemousemove", function() {
 		if(mcdown&&dragMc.dragable) {
-			dragMc.x = Math.max(rect.x, Math.min(rect.x + rect.width, stage.mouseX-offsetX));
-			dragMc.y = Math.max(rect.y, Math.min(rect.y + rect.height, stage.mouseY-offsetY));
+			if(rect!=null){
+				dragMc.x = Math.max(rect.x, Math.min(rect.x + rect.width, stage.mouseX-offsetX));
+				dragMc.y = Math.max(rect.y, Math.min(rect.y + rect.height, stage.mouseY-offsetY));
+			}else{
+				dragMc.x = stage.mouseX-offsetX;
+				dragMc.y = stage.mouseY-offsetY;
+			}
 			if(dragMc.moveHandler instanceof(Function)){
 				dragMc.moveHandler();
 			}
