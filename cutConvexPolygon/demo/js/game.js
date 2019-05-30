@@ -16,7 +16,9 @@ function Point(x,y){
 
 /*---------------------------------------------------------------*/
 
-var canvas, stage, root,isCut=false;
+var canvas, stage, root,isCut=toolList.selected.name=="index3"?true:false;;
+var initPolygon=[new Point(300,200),new Point(700,200),new Point(700,500),new Point(300,500)],polygons=[],shapes=[];
+
 
 init();
 
@@ -33,14 +35,35 @@ function init() {
 	gameInit()
 }
 
+toolList.eventHandler=function(){
+	isCut=this.selected.name=="index3"?true:false;
+}
+
+toolList.update.clickhandler=function(){
+	polygons=[];
+	polygons.push(copypolygon(initPolygon));
+	render(shapes,polygons,"#ffffff");
+}
+
+function copypolygon(polygon){
+	var newPoly=[];
+	for(var i=0;i<polygon.length;i++){
+		var point=new Point();
+		point.x=polygon[i].x;
+		point.y=polygon[i].y;
+		newPoly.push(point);
+	}
+	return newPoly;
+}
+
 function gameInit(){
-	console.log("init")
-	var isdown=false,polygons=[],shapes=[];
-	var polygon=[new Point(200,100),new Point(500,100),new Point(500,300),new Point(200,300)];
-	polygons.push(polygon);
+	
+	var isdown=false;
+	polygons.push(copypolygon(initPolygon));
 	render(shapes,polygons,"#ffffff");
 	
 	var line={
+		visible:false,
 		startPoint:new Point(0,0),
 		endPoint:new Point(0,0)
 	}
@@ -51,6 +74,7 @@ function gameInit(){
 		if(!isCut){
 			return;
 		}
+		line.visible=true;
 		line.startPoint.x=stage.mouseX;
 		line.startPoint.y=stage.mouseY;
 		root.addChild(lineShape);
@@ -77,25 +101,23 @@ function gameInit(){
 		render(shapes,polygons,"#ffffff");
 		lineShape.graphics.clear();
 		root.removeChild(lineShape);
+		line.visible=false;
+		
 	})
-	
-	root.cutBtn.addEventListener("click",function(e){
-		isCut=!isCut;
-		if(isCut){
-			root.cutBtn.gotoAndStop(1)
-		}else{
-			root.cutBtn.gotoAndStop(0)
-		}
-	})	
 }
 
 function cupPolygons(line,polygons){
+	if(!line.visible){
+		return;
+	}
+	
 	var newpolygons=polygons.concat();
 	for(var i=0;i<polygons.length;i++){
 		var newPoly=cutPolygon(line,polygons[i]);
 		if(newPoly!=null){
 			newpolygons.splice(newpolygons.indexOf(polygons[i]),1);
 			newpolygons.push(newPoly[0],newPoly[1]);
+			
 		}
 	}
 	return newpolygons;
@@ -108,6 +130,7 @@ function cutPolygon(line,polygon){
 		var nextIndex=i==(len-1)?0:(i+1);
 		var side=[polygoncopy[i],polygoncopy[nextIndex]];
 		var cross=segmentsIntr(side[0],side[1],line.startPoint,line.endPoint);
+		console.log(cross);
 		if(cross){
 			cross.index=i;
 			crosses.push(cross);
@@ -154,15 +177,17 @@ function segmentsIntr(a, b, c, d){
     var y = -( (b.y - a.y) * (d.y - c.y) * (c.x - a.x)   
                 + (b.x - a.x) * (d.y - c.y) * a.y   
                 - (d.x - c.x) * (b.y - a.y) * c.y ) / denominator;   
+    console.log((y - a.y) * (y - b.y));
     if(  
-        (x - a.x) * (x - b.x) <= 0 && (y - a.y) * (y - b.y) <= 0  
-         && (x - c.x) * (x - d.x) <= 0 && (y - c.y) * (y - d.y) <= 0  
+        Math.round(x - a.x) * Math.round(x - b.x) <= 0 && Math.round(y - a.y) * Math.round(y - b.y) <= 0  
+         && Math.round(x - c.x) * Math.round(x - d.x) <= 0 && Math.round(y - c.y) * Math.round(y - d.y) <= 0  
     ){  
         return {  
             x :  x,  
             y :  y  
         }  
-    }    
+    }   
+
     return false  
 }
 

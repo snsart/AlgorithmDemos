@@ -5,29 +5,26 @@ html{
     -moz-animation: fadeIn 1s linear;   	/* Firefox */
     -webkit-animation: fadeIn 1s linear;	/* Safari 和 Chrome */
     -o-animation: fadeIn 1s linear;	        /* Opera */
+   	background: #000000;
 }
 
 body{
 	margin: 0;
 	padding: 0;
-	font-size: 12px;
+	font-size: 0;
 }
 
+/*高度永远等于视窗高度*/
 #canvasCont{
 	position: relative;
-	width: 100%;
-	height: 100%;
-	background-color: #000000;
+	/*background-color: #000000;*/
+	margin: 0 auto;
 	background:url(../img/timg.jpg) no-repeat;
-	background-size:cover ;
+	background-size:100% 100%;
 }
-
-
 
 canvas{
 	position: relative;
-	width: 100%;
-	height: 100%;
 	z-index: 0;
 }
 
@@ -45,7 +42,7 @@ canvas{
 	padding: 0;	
 }
 
-li{
+#btns-list li{
 	float: left;
 	list-style-type: none;
 	border-radius: 5px;
@@ -57,11 +54,11 @@ li{
 	background: #444444;
 }
 
-li:hover{
+#btns-list li:hover{
 	background: #666666;
 }
 
-li.selected{
+#btns-list li.selected{
 	background: #222222;
 }
 
@@ -88,16 +85,12 @@ li.index3 .icon{
 	background: url(../img/knife.svg) ;
 }
 
-li.update{
+#btns-list li.update,#btns-list li.help{
 	float: right;
 }
 
 li.update .icon{
 	background: url(../img/update.svg) ;
-}
-
-li.help{
-	float: right;
 }
 
 li.help .icon{

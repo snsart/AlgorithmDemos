@@ -10,13 +10,15 @@ var myPublicFiles = [
 	'js/animaCreateJs.js',
 ];
 
-
 var myCommonFiles = [
 	
 ];
 
+
 var myPrivateFiles = [
 	
+	'js/layout.js',
+	'js/toolList.js',
 	//声音处理
 	'js/soundjs-0.6.2.min.js',
 	
