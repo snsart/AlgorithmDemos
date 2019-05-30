@@ -25,6 +25,7 @@ var toolList=this.toolList=this.tooList||{
 	toolList.selected=toolList.index3;
 	$($("li.selected")[0]).removeClass("selected");
 	$($(".index3")[0]).addClass("selected");
+	$($("canvas")[0]).css("cursor","url(img/knifecursor.svg),auto");
 })();
 
 
@@ -42,11 +43,13 @@ toolList.index2.clickhandler=function(){
 	$($("canvas")[0]).css("cursor","pointer");
 	toolList.selected=this;
 };
+
 toolList.index3.clickhandler=function(){
 	$($("li.selected")[0]).removeClass("selected");
 	$($(".index3")[0]).addClass("selected");
 	
-	$($("canvas")[0]).css("cursor","url(img/knife.svg)");
+	$($("canvas")[0]).css("cursor","url(img/knifecursor.svg),auto");
+	/* "url(../img/images/mouse-fangxiaojing.png), auto"*/
 	toolList.selected=this;
 };
 
