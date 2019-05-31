@@ -7,28 +7,31 @@
 	</head>
 
 	<body class="body">
-		<div class="margin-auto">
-			<div class="demon_Btn">
-				<span class="title-pre fl"></span>
-				<div class="title-text fl">
-					<span class="head-txt">演示程序</span>
-				</div>
-				<span class="title-end fl"></span>
-			</div>
-		
-			<div class="animaContrl" style="border: none; display: none;">
-				<ul class="canvas-contrl fr">
-					<li class="arrow btn"></li>
-					<li class="hand btn"></li>
-					<li class="enlarge btn"></li>
-					<li class="reduce btn"></li>
-					<li class="initbtn btn"></li>
+		<div id="canvasCont">
+			<canvas id="canvas" width="1000" height="700"></canvas>	
+			<div id="btns-cont">
+				<ul id="btns-list">
+					<li class="btn index1" data-name="index1" title="选择">
+						<span class="icon"></span>
+					</li>
+					<li class="btn index2" data-name="index2" title="移动">
+						<span class="icon"></span>
+					</li>
+					<li class="btn selected index3" data-name="index3" title="小刀裁剪">
+						<span class="icon"></span>
+					</li>
+					
+					<li class="btn update" data-name ="update" title="刷新">
+						<span class="icon"></span>
+					</li>
+					<li class="btn help" data-name ="help" title="帮助">
+						<span class="icon"></span>
+					</li>
 				</ul>
-				<canvas id="canvas" width="1024" height="768" style="width:40rem;"></canvas>
 			</div>
 		</div>
 		<script src="js/h5_loader_primary_math.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/h5_init_primary_math.js" type="text/javascript" charset="utf-8"></script>
-	</body>
+</body>
 
 </html>

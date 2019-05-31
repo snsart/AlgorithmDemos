@@ -1,123 +1,103 @@
 html{
-	font-size: 24px;
+	margin: 0;
+	padding: 0;
 	 animation: fadeIn 1s linear;
     -moz-animation: fadeIn 1s linear;   	/* Firefox */
     -webkit-animation: fadeIn 1s linear;	/* Safari 和 Chrome */
     -o-animation: fadeIn 1s linear;	        /* Opera */
+   	background: #666666;
 }
 
 body{
 	margin: 0;
 	padding: 0;
-	font-size: 12px;
-	display: none;
+	font-size: 0;
+}
+
+/*高度永远等于视窗高度*/
+#canvasCont{
+	position: relative;
+	background-color: #000000;
+	margin: 0 auto;
+	background-size:100% 100%;
 }
 
 canvas{
-	position: absolute;
-	margin-top: 7rem;
+	position: relative;
 	z-index: 0;
 }
 
-/*--------------程序标题--------------*/
-.demon_Btn{
+#btns-cont{
 	position: absolute;
-	display: inline-block;
-	height: 7rem;
-	z-index: 1;
+	margin: 0 auto;
+	bottom: 0;
+	height: 40px;
+	width: 100%;
+	background-color: #333333bb;
 }
 
-.title-pre{
-	display: inline-block;
-	width: 4rem;
-	height: 7rem;
-	padding: 0;
-	background: url(../img/title1.png) no-repeat;
-	background-size: 100% 100%;
-}
-.title-end{
-	display: inline-block;
-	width: 4rem;
-	height: 7rem;
-	padding: 0;
-	margin-left: -0.5rem;
-	background: url(../img/title3.png) no-repeat;
-	background-size: 100% 100%;
+#btns-list{
+	margin: 4px 20px;
+	padding: 0;	
 }
 
-.title-text{
-	display: inline-block;
-	height: 7rem;
-	margin-left: -0.5rem;
-	background: url(../img/title2.png) repeat-x;
-	background-size: auto 100%;
-}
-
-.head-txt{
-	position: relative;
-	display: inline-block;
-	top:3.1rem;
-	font-size: 1.7rem;
-	font-weight: bold;
-	color: #fff;
-	-moz-user-select: none;
-	-webkit-user-select: none;
-}
-
-
-/*--------------程序工具栏--------------*/
-
-.canvas-contrl{
-	position: absolute;
-	background-color: #77A944;
-	border-radius: 0.2rem;
-	margin: 10rem 2rem auto auto;
-	padding: 0;
-	width: 2rem;
-	height: 9.2rem;
-	left: auto;
-	right: 0rem;
-	z-index: 2;
-}
-
-
-.arrow{
-	background-image: url(../img/arrowup.svg);
-}
-.hand{
-	background-image: url(../img/handup.svg);
-}
-.enlarge{
-	background-image: url(../img/enlarge.svg);
-}
-.reduce{
-	background-image: url(../img/reduce.svg);
-}
-.initbtn{
-	background-image: url(../img/init.svg);
-}
-
-.btn{
-	width: 1.6rem;
-	height: 1.6rem;
-	background-size:100% 100%;
-	background-repeat: no-repeat;
-	margin: 0.2rem auto;
-}
-
-
-
-li{
-	list-style-type: none;
-}
-
-.fl{
+#btns-list li{
 	float: left;
+	list-style-type: none;
+	border-radius: 5px;
+	width: 30px;
+	height: 30px;
+	border: solid thin #000000;
+	margin: 0 2px;
+	
+	background: #444444;
 }
 
-.fr{
+#btns-list li:hover{
+	background: #666666;
+}
+
+#btns-list li.selected{
+	background: #222222;
+}
+
+.icon{
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: no-repeat center / cover;
+}
+
+li.index1 .icon{
+	
+	background: url(../img/arrow.svg) ;
+}
+
+li.index2 .icon{
+	background: url(../img/hand.svg) ;
+}
+
+
+li.index3 .icon{
+	
+	background: url(../img/knife.svg) ;
+}
+
+#btns-list li.update,#btns-list li.help{
 	float: right;
 }
+
+li.update .icon{
+	background: url(../img/update.svg) ;
+}
+
+li.help .icon{
+	background: url(../img/help.svg) ;
+}
+
+
+
 
 
 /*修改滚动条*/
